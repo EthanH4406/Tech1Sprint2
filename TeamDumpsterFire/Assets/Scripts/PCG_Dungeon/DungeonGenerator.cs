@@ -6,6 +6,7 @@ using System.Net.NetworkInformation;
 using Random = UnityEngine.Random;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
+using System.Security.Cryptography;
 
 public class DungeonGenerator : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class DungeonGenerator : MonoBehaviour
     [Header("Debug Settings")]
     public bool showAutomata;
     public bool showRooms;
-    public bool showRemovedTiles;
+    public bool showUnCulledTiles;
+    public bool showCorridors;
 
 	//CA
 	[Header("Cellular Automata Settings")]
@@ -64,6 +66,7 @@ public class DungeonGenerator : MonoBehaviour
 
     private List<BoundsInt> createdRooms = new List<BoundsInt>();
 	private List<Vector2Int> RemovedTiles = new List<Vector2Int>();
+    private HashSet<Vector2Int> CreatedCorridors = new HashSet<Vector2Int>();
 
 	// Start is called before the first frame update
 	void Start()
@@ -96,26 +99,6 @@ public class DungeonGenerator : MonoBehaviour
         }
 	}
 
-	private void CheckForPath()
-	{
-		throw new NotImplementedException();
-	}
-
-	private void PopulateMap()
-	{
-		throw new NotImplementedException();
-	}
-
-	private void EnsureConnectivity()
-	{
-		throw new NotImplementedException();
-	}
-
-	private void BuildMap()
-	{
-		throw new NotImplementedException();
-	}
-
 	private void GenerateBSPMap()
 	{
         CreateRooms();
@@ -137,6 +120,7 @@ public class DungeonGenerator : MonoBehaviour
         }
 
 		HashSet<Vector2Int> corridors = ConnectRooms(roomCenters);
+        CreatedCorridors = corridors;
 		floor.UnionWith(corridors);
 
 		if (layerAutomata)
@@ -146,16 +130,86 @@ public class DungeonGenerator : MonoBehaviour
 			floor.UnionWith(automata);
 		}
 
-        //temp
-        
+        //Remove disconnected areas
+        Vector2Int checkPos = new Vector2Int((int)roomsList[0].center.x, (int)roomsList[0].center.y);
+        floor = ConvertMap(CullMap(checkPos, floor));
 
-        //create floors
+        //paint floors
         PaintFloorTiles(floor);
-        //create walls
+        //paint walls
         CreateWalls(floor);
 	}
 
-    
+    private HashSet<Vector2Int> ConvertMap(List<Vector2Int> rawMap)
+    {
+        HashSet<Vector2Int> map = new HashSet<Vector2Int>();
+
+        foreach(Vector2Int tile in rawMap)
+        {
+            map.Add(tile);
+        }
+
+        return map;
+    }
+
+    private List<Vector2Int> CullMap(Vector2Int startPos, HashSet<Vector2Int> floorTiles)
+    {
+        List<Vector2Int> tiles = new List<Vector2Int>();
+		int[,] mapFlags = new int[width, height];
+
+
+		Queue<Vector2Int> tileQueue = new Queue<Vector2Int>();
+        tileQueue.Enqueue(startPos);
+
+        mapFlags[startPos.x, startPos.y] = 1;
+
+        int[,] map = new int[width, height];
+
+        for(int i=0; i < width; i++)
+        {
+            for(int j=0; j < height; j++)
+            {
+                map[i, j] = 1;
+            }
+        }
+
+		foreach (Vector2Int pos in floorTiles)
+		{
+			map[pos.x, pos.y] = 0;
+		}
+
+
+		while (tileQueue.Count > 0)
+        {
+            Vector2Int currentTile = tileQueue.Dequeue();
+            tiles.Add(currentTile);
+
+            for(int x = currentTile.x - 1; x<= currentTile.x + 1; x++)
+            {
+				for (int y = currentTile.y - 1; y <= currentTile.y + 1; y++)
+                {
+                    if(IsInMapRange(currentTile) && (y == currentTile.y || x == currentTile.x))
+                    {
+                        if (mapFlags[x,y] == 0 && map[x,y] == 0)
+                        {
+                            mapFlags[x,y] = 1;
+                            tileQueue.Enqueue(new Vector2Int(x, y));
+                        }
+                    }
+                }
+
+			}
+
+		}
+
+        return tiles;
+    }
+
+    private bool IsInMapRange(Vector2Int pos)
+    {
+        return pos.x >= 0 && pos.x < width && pos.y >= 0 && pos.y < height;
+    }
+
 
 	private HashSet<Vector2Int> GetAutomataAsGrid()
 	{
@@ -347,7 +401,19 @@ public class DungeonGenerator : MonoBehaviour
     {
         if(useRandomSeed)
         {
-            seed = Time.time.ToString();
+			string str = "abcdefghijklmnopqrstuvwxyz0123456789";
+			int size = 8;
+
+			string randomstring = "";
+
+			for (int i = 0; i < size; i++)
+			{
+				int x = Random.Range(0, str.Length);
+
+				randomstring = randomstring + str[x];
+			}
+
+			seed = randomstring;
         }
 
         System.Random prng = new System.Random(seed.GetHashCode());
@@ -652,7 +718,7 @@ public class DungeonGenerator : MonoBehaviour
             }
         }
 
-        if(showRemovedTiles && RemovedTiles.Count > 0)
+        if(showUnCulledTiles && RemovedTiles.Count > 0)
         {
             Gizmos.color = Color.red;
             foreach(Vector2Int tile in RemovedTiles)
@@ -660,5 +726,14 @@ public class DungeonGenerator : MonoBehaviour
                 Gizmos.DrawWireCube(new Vector3(tile.x, tile.y, 0), Vector3.one);
             }
         }
+
+        if(showCorridors && CreatedCorridors.Count > 0)
+        {
+			Gizmos.color = Color.yellow;
+			foreach (Vector2Int tile in CreatedCorridors)
+			{
+				Gizmos.DrawWireCube(new Vector3(tile.x, tile.y, 0), Vector3.one);
+			}
+		}
 	}
 }

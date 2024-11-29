@@ -677,11 +677,12 @@ MonoBehaviour:
   layerAutomata: 1
   showAutomata: 0
   showRooms: 0
-  showRemovedTiles: 0
+  showUnCulledTiles: 0
+  showCorridors: 0
   noiseDensity: 50
   width: 200
   height: 200
-  smoothPasses: 3
+  smoothPasses: 5
   seed: blueApple
   useRandomSeed: 1
   minRoomWidth: 10
