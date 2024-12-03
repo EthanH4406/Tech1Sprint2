@@ -129,6 +129,7 @@ public class CreateDungeon : MonoBehaviour
 
         actualPositions = postions;
 
+        //---------------------------------------------------------------------------------------------------------------
 		//now place stuff
 		BoundsInt startRoom = generatedRooms[Random.Range(0, generatedRooms.Count)];
         BoundsInt endRoom = generatedRooms[Random.Range(0, generatedRooms.Count)];
@@ -150,6 +151,11 @@ public class CreateDungeon : MonoBehaviour
 
         foreach(Vector2Int point in actualPositions)
         {
+            if (point == new Vector2Int((int)startRoom.center.x, (int)startRoom.center.y) || point == new Vector2Int((int)endRoom.center.x, (int)endRoom.center.y))
+            {
+                continue;
+            }
+
             Vector3 position = new Vector3(point.x + 0.5f, point.y + 0.5f, 0);
             int index = Random.Range(0, listOfAssetsToSpread.Count);
             GameObject obj = listOfAssetsToSpread[index];
