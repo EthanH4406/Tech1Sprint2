@@ -13,7 +13,7 @@ public class DungeonGenerator : MonoBehaviour
 	[Header("General Settings")]
 	public Tilemap floorTilemap;
     public Tilemap wallsTilemap;
-    public bool layerAutomata;
+    public bool layerAutomata = true;
 
     [Header("Debug Settings")]
     public bool showAutomata;
@@ -30,7 +30,7 @@ public class DungeonGenerator : MonoBehaviour
     public int smoothPasses = 5;
 
     public string seed;
-    public bool useRandomSeed;
+    public bool useRandomSeed = true;
 
     private int[,] map_CA;
 
@@ -64,15 +64,17 @@ public class DungeonGenerator : MonoBehaviour
     public TileBase wallDiagonalCornerUpRight;
     public TileBase wallDiagonalCornerUpLeft;
 
-    private List<BoundsInt> createdRooms = new List<BoundsInt>();
+    [Header("Don't Touch These")]
+    public List<BoundsInt> generatedRooms = new List<BoundsInt>();
+	public HashSet<Vector2Int> generatedCorridors = new HashSet<Vector2Int>();
+	public HashSet<Vector2Int> generatedFloorTiles = new HashSet<Vector2Int>();
 	private List<Vector2Int> RemovedTiles = new List<Vector2Int>();
-    private HashSet<Vector2Int> CreatedCorridors = new HashSet<Vector2Int>();
 
 	// Start is called before the first frame update
 	void Start()
     {
         //GenerateCAMap();
-        GenerateBSPMap();
+        //GenerateDungeonMap();
         //BuildMap();
         //EnsureConnectivity();
         //PopulateMap();
@@ -90,18 +92,10 @@ public class DungeonGenerator : MonoBehaviour
         ///     Optionally instead, run a pathfinding algor to make sure there exists a path from player start to end
     }
 
-	private void Update()
-	{
-		if(Input.GetMouseButtonDown(0))
-        {
-            Clear();
-            GenerateBSPMap();
-        }
-	}
-
-	private void GenerateBSPMap()
+	public bool GenerateDungeonMap()
 	{
         CreateRooms();
+        return true;
 	}
 
 	private void CreateRooms()
@@ -111,7 +105,7 @@ public class DungeonGenerator : MonoBehaviour
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
         floor = CreateSimpleRooms(roomsList);
 
-        createdRooms = roomsList;
+        generatedRooms = roomsList;
 
         List<Vector2Int> roomCenters = new List<Vector2Int>();
         foreach(BoundsInt room in roomsList)
@@ -120,7 +114,7 @@ public class DungeonGenerator : MonoBehaviour
         }
 
 		HashSet<Vector2Int> corridors = ConnectRooms(roomCenters);
-        CreatedCorridors = corridors;
+        generatedCorridors = corridors;
 		floor.UnionWith(corridors);
 
 		if (layerAutomata)
@@ -133,6 +127,8 @@ public class DungeonGenerator : MonoBehaviour
         //Remove disconnected areas
         Vector2Int checkPos = new Vector2Int((int)roomsList[0].center.x, (int)roomsList[0].center.y);
         floor = ConvertMap(CullMap(checkPos, floor));
+
+        generatedFloorTiles = floor;
 
         //paint floors
         PaintFloorTiles(floor);
@@ -152,6 +148,7 @@ public class DungeonGenerator : MonoBehaviour
         return map;
     }
 
+    //essentially Flood Fill
     private List<Vector2Int> CullMap(Vector2Int startPos, HashSet<Vector2Int> floorTiles)
     {
         List<Vector2Int> tiles = new List<Vector2Int>();
@@ -708,11 +705,11 @@ public class DungeonGenerator : MonoBehaviour
 			}
 		}
 
-        if(showRooms && createdRooms.Count > 0)
+        if(showRooms && generatedRooms.Count > 0)
         {
             Gizmos.color = Color.blue;
 
-            foreach(BoundsInt room in createdRooms)
+            foreach(BoundsInt room in generatedRooms)
             {
                 Gizmos.DrawWireCube(room.center, room.size);
             }
@@ -727,12 +724,27 @@ public class DungeonGenerator : MonoBehaviour
             }
         }
 
-        if(showCorridors && CreatedCorridors.Count > 0)
+        if(showCorridors && generatedCorridors.Count > 0)
         {
-			Gizmos.color = Color.yellow;
-			foreach (Vector2Int tile in CreatedCorridors)
+            int counter = 0;
+
+			foreach (Vector2Int tile in generatedCorridors)
 			{
+                if(counter == 0)
+                {
+					Gizmos.color = Color.green;
+				}
+                else if(counter == generatedCorridors.Count)
+                {
+                    Gizmos.color = Color.red;
+                }
+                else
+                {
+					Gizmos.color = Color.yellow;
+				}
+
 				Gizmos.DrawWireCube(new Vector3(tile.x, tile.y, 0), Vector3.one);
+                counter++;
 			}
 		}
 	}
