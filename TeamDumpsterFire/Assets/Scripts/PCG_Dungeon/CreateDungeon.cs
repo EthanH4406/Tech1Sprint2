@@ -19,6 +19,9 @@ public class CreateDungeon : MonoBehaviour
     [Tooltip("The number of attempts at spawning a point at a relative position.")]
 	[SerializeField]
 	private int numberOfSamplesBeforeRejection = 30;
+    [Tooltip("The minimum distance between the start and end position.")]
+    [SerializeField]
+    private float dstFromStartToEnd;
 
     [Header("Assets")]
     [Tooltip("This is the asset the player will get teleported to when they start the level.")]
@@ -35,6 +38,9 @@ public class CreateDungeon : MonoBehaviour
     [Tooltip("Will show all of the spawn points generated.")]
     [SerializeField]
     private bool showPoints;
+    [Tooltip("Enable distance read outs between the start and end positions.")]
+    [SerializeField]
+    private bool printDst;
     [Tooltip("This is a list of all the spawned assets. DO NOT TOUCH.")]
     [SerializeField]
     private List<GameObject> spawnedObjects = new List<GameObject>();
@@ -130,9 +136,29 @@ public class CreateDungeon : MonoBehaviour
         actualPositions = postions;
 
         //---------------------------------------------------------------------------------------------------------------
-		//now place stuff
-		BoundsInt startRoom = generatedRooms[Random.Range(0, generatedRooms.Count)];
+        //now place stuff
+
+        BoundsInt startRoom = generatedRooms[Random.Range(0, generatedRooms.Count)];
         BoundsInt endRoom = generatedRooms[Random.Range(0, generatedRooms.Count)];
+
+        if(dstFromStartToEnd < generator.width && dstFromStartToEnd < generator.height)
+        {
+            while (Vector2.Distance(startRoom.center, endRoom.center) < dstFromStartToEnd)
+            {
+                startRoom = generatedRooms[Random.Range(0, generatedRooms.Count)];
+                endRoom = generatedRooms[Random.Range(0, generatedRooms.Count)];
+            }
+        }
+        else
+        {
+            Debug.Log("The defined distance between start and end is too big.");
+        }
+
+        if(printDst)
+        {
+            Debug.Log(Vector2.Distance(startRoom.center, endRoom.center).ToString());
+        }
+		
 
         while(startRoom == endRoom)
         {

@@ -762,11 +762,13 @@ MonoBehaviour:
   density: 10
   antiSpawnRadius: 1
   numberOfSamplesBeforeRejection: 30
+  dstFromStartToEnd: 50
   startPosAsset: {fileID: 8250238738380780113, guid: 737810db814967f44b4e41925ef8ed28, type: 3}
   dungeonExitAsset: {fileID: 504348791833722018, guid: 21fbf6ab633ac024b8ea92fffa4ae8c7, type: 3}
   listOfAssetsToSpread:
   - {fileID: 886064432}
   showPoints: 0
+  printDst: 0
   spawnedObjects: []
 --- !u!1001 &643603367224446029
 PrefabInstance:
