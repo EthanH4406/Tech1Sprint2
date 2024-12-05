@@ -51,20 +51,20 @@ public class DungeonGenerator : MonoBehaviour
     public Vector2Int startPos;
 
     [Header("Tiles")]
-    public TileBase floorTile;
-    public TileBase wallTop;
-    public TileBase wallSideRight;
-    public TileBase wallSideLeft;
-    public TileBase wallBottom;
-    public TileBase wallFull;
-    public TileBase wallInnerCornerDownLeft;
-    public TileBase wallInnerCornerDownRight;
-    public TileBase wallDiagonalCornerDownRight;
-    public TileBase wallDiagonalCornerDownLeft;
-    public TileBase wallDiagonalCornerUpRight;
-    public TileBase wallDiagonalCornerUpLeft;
+    public List<TileBase> floorTile = new List<TileBase> ();
+    public List<TileBase> wallTop = new List<TileBase>();
+	public List<TileBase> wallSideRight = new List<TileBase>();
+	public List<TileBase> wallSideLeft = new List<TileBase>();
+	public List<TileBase> wallBottom = new List<TileBase>();
+	public List<TileBase> wallFull = new List<TileBase>();
+	public List<TileBase> wallInnerCornerDownLeft = new List<TileBase>();
+	public List<TileBase> wallInnerCornerDownRight = new List<TileBase>();
+	public List<TileBase> wallDiagonalCornerDownRight = new List<TileBase>();
+	public List<TileBase> wallDiagonalCornerDownLeft = new List<TileBase>();
+	public List<TileBase> wallDiagonalCornerUpRight = new List<TileBase>();
+	public List<TileBase> wallDiagonalCornerUpLeft = new List<TileBase>();
 
-    [Header("Don't Touch These")]
+	[Header("Don't Touch These")]
     public List<BoundsInt> generatedRooms = new List<BoundsInt>();
 	public HashSet<Vector2Int> generatedCorridors = new HashSet<Vector2Int>();
 	public HashSet<Vector2Int> generatedFloorTiles = new HashSet<Vector2Int>();
@@ -483,11 +483,11 @@ public class DungeonGenerator : MonoBehaviour
         PaintTiles(floorPositions, floorTilemap, floorTile);
     }
 
-    private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase tile)
+    private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, List<TileBase> tiles)
     {
         foreach(Vector2Int pos in positions)
         {
-            PaintSingleTile(tilemap, tile, pos);
+            PaintSingleTile(tilemap, tiles[Random.Range(0, tiles.Count)], pos);
         }
     }
 
@@ -504,23 +504,23 @@ public class DungeonGenerator : MonoBehaviour
 
 		if (WallTypesHelper.wallTop.Contains(typeAsInt))
 		{
-			tile = wallTop;
+			tile = wallTop[Random.Range(0, wallTop.Count)];
 		}
 		else if (WallTypesHelper.wallSideRight.Contains(typeAsInt))
 		{
-			tile = wallSideRight;
+			tile = wallSideRight[Random.Range(0, wallSideRight.Count)];
 		}
 		else if (WallTypesHelper.wallSideLeft.Contains(typeAsInt))
 		{
-			tile = wallSideLeft;
+			tile = wallSideLeft[Random.Range(0, wallSideLeft.Count)];
 		}
 		else if (WallTypesHelper.wallBottm.Contains(typeAsInt))
 		{
-			tile = wallBottom;
+			tile = wallBottom[Random.Range(0, wallBottom.Count)];
 		}
 		else if (WallTypesHelper.wallFull.Contains(typeAsInt))
 		{
-			tile = wallFull;
+			tile = wallFull[Random.Range(0, wallFull.Count)];
 		}
 
 		if (tile != null)
@@ -537,35 +537,35 @@ public class DungeonGenerator : MonoBehaviour
 
 		if (WallTypesHelper.wallInnerCornerDownLeft.Contains(typeASInt))
 		{
-			tile = wallInnerCornerDownLeft;
+			tile = wallInnerCornerDownLeft[Random.Range(0, wallInnerCornerDownLeft.Count)];
 		}
 		else if (WallTypesHelper.wallInnerCornerDownRight.Contains(typeASInt))
 		{
-			tile = wallInnerCornerDownRight;
+			tile = wallInnerCornerDownRight[Random.Range(0, wallInnerCornerDownRight.Count)];
 		}
 		else if (WallTypesHelper.wallDiagonalCornerDownLeft.Contains(typeASInt))
 		{
-			tile = wallDiagonalCornerDownLeft;
+			tile = wallDiagonalCornerDownLeft[Random.Range(0, wallDiagonalCornerDownLeft.Count)];
 		}
 		else if (WallTypesHelper.wallDiagonalCornerDownRight.Contains(typeASInt))
 		{
-			tile = wallDiagonalCornerDownRight;
+			tile = wallDiagonalCornerDownRight[Random.Range(0, wallDiagonalCornerDownRight.Count)];
 		}
 		else if (WallTypesHelper.wallDiagonalCornerUpRight.Contains(typeASInt))
 		{
-			tile = wallDiagonalCornerUpRight;
+			tile = wallDiagonalCornerUpRight[Random.Range(0, wallDiagonalCornerUpRight.Count)];
 		}
 		else if (WallTypesHelper.wallDiagonalCornerUpLeft.Contains(typeASInt))
 		{
-			tile = wallDiagonalCornerUpLeft;
+			tile = wallDiagonalCornerUpLeft[Random.Range(0, wallDiagonalCornerUpLeft.Count)];
 		}
 		else if (WallTypesHelper.wallFullEightDirections.Contains(typeASInt))
 		{
-			tile = wallFull;
+			tile = wallFull[Random.Range(0, wallFull.Count)];
 		}
 		else if (WallTypesHelper.wallBottmEightDirections.Contains(typeASInt))
 		{
-			tile = wallBottom;
+			tile = wallBottom[Random.Range(0, wallBottom.Count)];
 		}
 
 		if (tile != null)
