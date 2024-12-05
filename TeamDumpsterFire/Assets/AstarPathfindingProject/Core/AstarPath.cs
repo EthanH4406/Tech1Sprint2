@@ -1574,7 +1574,7 @@ public class AstarPath : VersionedMonoBehaviour {
 	/// AstarPath.active.Scan();
 	///
 	/// // Recalculate only the first grid graph
-	/// var graphToScan = AstarPath.active.data.gridGraph;
+	/// var graphToScan = AstarPath.active.data.gridGraph;				<------------------------------------------------------------------
 	/// AstarPath.active.Scan(graphToScan);
 	///
 	/// // Recalculate only the first and third graphs

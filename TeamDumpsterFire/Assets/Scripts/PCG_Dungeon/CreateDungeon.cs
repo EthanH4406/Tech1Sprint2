@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
 public class CreateDungeon : MonoBehaviour
@@ -46,15 +47,19 @@ public class CreateDungeon : MonoBehaviour
     private List<GameObject> spawnedObjects = new List<GameObject>();
 
 	private HashSet<Vector2Int> actualPositions = new HashSet<Vector2Int>();
+    private AstarPath pathfinding;
 
+    private float tempTimer;
 
 	private void Awake()
 	{
 		generator = GetComponent<DungeonGenerator>();
+        pathfinding = GameObject.FindGameObjectWithTag("Pathfinding").GetComponent<AstarPath>();
 	}
 
 	void Start()
     {
+        tempTimer = Time.time;
         CreateJunkyard();
     }
 
@@ -83,6 +88,16 @@ public class CreateDungeon : MonoBehaviour
 
         if(populatedMap)
         {
+
+            if(pathfinding != null && Time.time >= tempTimer + 2f)
+            {
+                //pathfinding.UpdateGraphs(generator.wallsTilemap.gameObject.GetComponent<TilemapCollider2D>().bounds, 0.5f);
+                //pathfinding.Scan(pathfinding.data.gridGraph);
+                //pathfinding.Scan();
+                AstarPath.active.UpdateGraphs(generator.wallsTilemap.gameObject.GetComponent<TilemapCollider2D>().bounds, 0.5f);
+                AstarPath.active.Scan();
+            }
+
             return true;
         }
 
