@@ -60,7 +60,9 @@ public class CreateDungeon : MonoBehaviour
 	void Start()
     {
         tempTimer = Time.time;
-        CreateJunkyard();
+        bool status = CreateJunkyard();
+
+        Debug.Log("finish status: " + status.ToString());
     }
 
     // Update is called once per frame
@@ -71,25 +73,27 @@ public class CreateDungeon : MonoBehaviour
         bool mapGenSuccess = generator.GenerateDungeonMap();
         bool populatedMap = false;
 
+        Debug.Log("MapGenSuccess: " + mapGenSuccess.ToString());
 
 		if (mapGenSuccess)
         {
             populatedMap = PopulateMapWithAssets();
         }
 
+        Debug.Log("Populated Map: " + populatedMap.ToString());
+
         if(populatedMap)
         {
 
-            if(pathfinding != null && Time.time >= tempTimer + 2f)
-            {
-                //pathfinding.UpdateGraphs(generator.wallsTilemap.gameObject.GetComponent<TilemapCollider2D>().bounds, 0.5f);
-                //pathfinding.Scan(pathfinding.data.gridGraph);
-                //pathfinding.Scan();
-                AstarPath.active.UpdateGraphs(generator.wallsTilemap.gameObject.GetComponent<TilemapCollider2D>().bounds, 0.5f);
-                AstarPath.active.Scan();
-            }
 
-            return true;
+			if(pathfinding != null)
+            {
+				AstarPath.active.UpdateGraphs(generator.wallsTilemap.gameObject.GetComponent<TilemapCollider2D>().bounds, 0.5f);
+				AstarPath.active.Scan();
+			}
+
+
+			return true;
         }
 
         return false;
@@ -206,7 +210,7 @@ public class CreateDungeon : MonoBehaviour
 
         
 
-		return false;
+		return true;
     }
 
 	
