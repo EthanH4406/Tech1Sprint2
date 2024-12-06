@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     Dictionary<int, PlayerItem> inventory = new Dictionary<int, PlayerItem>();
+    private PlayerItem heldItem;
 
     public bool AddItemToInventory(PlayerItem item)
     {
@@ -46,5 +47,14 @@ public class PlayerInventory : MonoBehaviour
         }
 
     }
+
+    public void DropHeldItem(Vector3 playerPos)
+    {
+        DropItem(playerPos, heldItem.id);
+    }
     
+    public PlayerItem GetHeldItem()
+    {
+        return heldItem;
+    }
 }

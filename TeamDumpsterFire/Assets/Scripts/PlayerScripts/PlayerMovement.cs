@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     string facingV;
     public ParticleSystem dashParticles;
 
+    public InputActionReference Movement;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,10 +31,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
+        Vector2 movementDirection = Movement.action.ReadValue<Vector2>();
 
-        Debug.Log(x + ", " + y);
+        float x = movementDirection.x;
+        float y = movementDirection.y;
+
+        //Debug.Log(x + ", " + y);
         dir = new Vector2(x, y).normalized;
         switch (x)
         {
@@ -51,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
                 facingV = "down";
                 break;
         }
-        Debug.Log(facingH + ", " + facingV);
+        //Debug.Log(facingH + ", " + facingV);
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {

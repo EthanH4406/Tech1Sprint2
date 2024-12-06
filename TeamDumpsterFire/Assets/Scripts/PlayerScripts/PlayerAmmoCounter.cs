@@ -4,56 +4,24 @@ using UnityEngine;
 
 public class PlayerAmmoCounter : MonoBehaviour
 {
-    //this script handles the ammo UI and management for the player
-    private List<AmmoType> ammoTypes = new List<AmmoType>();
-    
 
-    public void AddAmmo(string type, int amo)
+    public int ammoCount;
+
+    public void AddAmmo(int amo)
     {
-        foreach(AmmoType ammo in ammoTypes)
-        {
-            if(ammo.type.Equals(type))
-            {
-                ammo.count += amo;
-                return;
-            }
-        }
+        ammoCount += amo;
     }
 
-    //returns a bool if the gun still has ammo
-    public bool ConsumeAmmo(string type, int amo)
+    //returns the number of bullets consumed. If the ammount goes negative, it gets clamped and the actual amount gets returned. Then compare to see if they match.
+    public int ConsumeAmmo(int amo)
     {
-        foreach (AmmoType ammo in ammoTypes)
-        {
-            if (ammo.type.Equals(type))
-            {
-                ammo.count -= amo;
+        int oldAmount = ammoCount;
+        ammoCount -= amo;
 
-                if(ammo.count <= 0)
-                {
-                    ammo.count = 0;
-                    return false;
-                }
-
-                break;
-            }
-        }
-
-        return true;
+        ammoCount = Mathf.Clamp(ammoCount, 0, 3000);
+        return oldAmount - ammoCount;
     }
 
 }
 
-public class AmmoType
-{
-    public string type;
-    public int count;
-    public float damage;
 
-    public AmmoType(string type, int count, float damage)
-    {
-        this.type = type;
-        this.count = count;
-        this.damage = damage;
-    }
-}
