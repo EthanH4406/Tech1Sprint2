@@ -19,6 +19,7 @@ public class PlayerStateManager : MonoBehaviour
 	public PlayerReloadState reloadState = new PlayerReloadState();
 	public PlayerIdleState idleState = new PlayerIdleState();
 	public PlayerShootState shootState = new PlayerShootState();
+	public PlayerInteractState interactState = new PlayerInteractState();
 
 	public InputActionReference shoot;
 	public InputActionReference repair;

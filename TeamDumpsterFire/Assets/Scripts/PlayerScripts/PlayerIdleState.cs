@@ -94,7 +94,7 @@ public class PlayerIdleState : PlayerBaseState
 			}
 			else
 			{
-
+				manager.SwitchState(manager.interactState);
 			}
 		}
 		else if(manager.repair.action.ReadValue<float>() == 1)
