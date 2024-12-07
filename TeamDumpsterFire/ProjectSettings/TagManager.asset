@@ -8,6 +8,7 @@ TagManager:
   - Pathfinding
   - GameManager
   - AmmoImg
+  - trashHeap
   layers:
   - Default
   - TransparentFX
