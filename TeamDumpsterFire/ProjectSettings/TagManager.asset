@@ -7,6 +7,8 @@ TagManager:
   - Basic Enemy Waypoint
   - Pathfinding
   - GameManager
+  - AmmoImg
+  - trashHeap
   layers:
   - Default
   - TransparentFX

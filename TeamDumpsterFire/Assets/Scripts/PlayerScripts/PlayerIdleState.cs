@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerIdleState : PlayerBaseState
 {
+	float tmpDelay = 3;
+
 	public override void EnterState(PlayerStateManager manager)
 	{
 		if(manager.enableStateStatusReadout)
@@ -92,7 +94,7 @@ public class PlayerIdleState : PlayerBaseState
 			}
 			else
 			{
-
+				manager.SwitchState(manager.interactState);
 			}
 		}
 		else if(manager.repair.action.ReadValue<float>() == 1)

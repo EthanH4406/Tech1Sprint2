@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 public class PlayerStateManager : MonoBehaviour
 {
 	public PlayerInventory inventory;
+	public PlayerAmmoCounter ammoCounter;
+	public PlayerHealthBar healthBar;
 	public GameManager gameManager;
 
 	//debug
@@ -17,6 +19,7 @@ public class PlayerStateManager : MonoBehaviour
 	public PlayerReloadState reloadState = new PlayerReloadState();
 	public PlayerIdleState idleState = new PlayerIdleState();
 	public PlayerShootState shootState = new PlayerShootState();
+	public PlayerInteractState interactState = new PlayerInteractState();
 
 	public InputActionReference shoot;
 	public InputActionReference repair;
@@ -24,20 +27,22 @@ public class PlayerStateManager : MonoBehaviour
 	public InputActionReference drop;
 	public InputActionReference interact;
 
-	public Vector2 playerPosition;
 	public Vector2 currentPosition;
+	public float gunTimer;
 
 	private void Awake()
 	{
 		//animationDriver = this.GetComponent<SpiderBossAnimationDriver>();
 
 		inventory = this.gameObject.GetComponent<PlayerInventory>();
+		ammoCounter = this.gameObject.GetComponent<PlayerAmmoCounter>();
+		healthBar = this.gameObject.GetComponent<PlayerHealthBar>();
 		gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 	}
 
 	void Start()
 	{
-
+		gunTimer = Time.time;
 
 		currentState = idleState;
 		currentState.EnterState(this);

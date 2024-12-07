@@ -16,6 +16,7 @@ public class PlayerShootState : PlayerBaseState
 
 		timer = Time.time;
 
+		/*
 		if(manager.inventory.GetHeldItem().tag.Equals("gun"))
 		{
 			gun = manager.inventory.GetHeldItem().gameObject.GetComponent<GunBehaviour>();
@@ -23,6 +24,17 @@ public class PlayerShootState : PlayerBaseState
 			GameObject bullet = manager.gameManager.objPooler.SpawnFromPool("player_bullet", manager.currentPosition, Quaternion.identity);
 			//shoot bullet
 		}
+		*/
+
+		
+		if(manager.ammoCounter.ammoCount > 0)
+		{
+			manager.ammoCounter.ShootBullet();
+		}
+
+
+
+		manager.SwitchState(manager.idleState);
 	}
 
 	public override void ExitState(PlayerStateManager manager)
@@ -47,9 +59,6 @@ public class PlayerShootState : PlayerBaseState
 
 	public override void UpdateState(PlayerStateManager manager)
 	{
-		if(Time.time >= timer + gun.shotCoolDown)
-		{
-			manager.SwitchState(manager.idleState);
-		}
+		
 	}
 }
