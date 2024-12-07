@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerIdleState : PlayerBaseState
 {
+	float tmpDelay = 3;
+
 	public override void EnterState(PlayerStateManager manager)
 	{
 		if(manager.enableStateStatusReadout)

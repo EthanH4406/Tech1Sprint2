@@ -30,17 +30,5 @@ public class GunBehaviour : MonoBehaviour
         
     }
 
-    public void Reload()
-    {
-        int consumedCount = ammoCounter.ConsumeAmmo(magCount);
-
-        if(consumedCount != magCount)
-        {
-            currentAmmoCount = consumedCount;
-        }
-        else
-        {
-			currentAmmoCount = magCount;
-		}
-    }
+    
 }
