@@ -19,11 +19,14 @@ public class EnemyPatrol : MonoBehaviour
 
     private Vector2 posOfWaypoint;
 
+    public PlayerHealthBar playerHealth;
+
     // Start is called before the first frame update
     void Start()
     {
         allowPathing = true;
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthBar>();
         SetDestination();
         timer = Time.time;
     }
@@ -69,5 +72,13 @@ public class EnemyPatrol : MonoBehaviour
         }
 
         targetSetter.target = waypoints[destSelected].transform;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            playerHealth.TakeDamage();
+        }
     }
 }
