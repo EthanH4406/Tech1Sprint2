@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
+using Pathfinding;
 
 public class CreateDungeon : MonoBehaviour
 {
@@ -63,6 +64,17 @@ public class CreateDungeon : MonoBehaviour
         bool status = CreateJunkyard();
 
         Debug.Log("finish status: " + status.ToString());
+
+        if (status == true && pathfinding != null)
+        {
+            //AstarPath.active = FindObjectOfType<AstarPath>();
+            //Bounds bounds = generator.wallsTilemap.gameObject.GetComponent<TilemapCollider2D>().bounds;
+            //var guo = new GraphUpdateObject(bounds);
+            //guo.updatePhysics = true;
+            //AstarPath.active.UpdateGraphs(guo, 0.5f);
+            //AstarPath.active.Scan();
+            StartCoroutine("ScanAfterSeconds", 0.01f);
+        }
     }
 
     // Update is called once per frame
@@ -84,15 +96,6 @@ public class CreateDungeon : MonoBehaviour
 
         if(populatedMap)
         {
-
-
-			if(pathfinding != null)
-            {
-				AstarPath.active.UpdateGraphs(generator.wallsTilemap.gameObject.GetComponent<TilemapCollider2D>().bounds, 0.5f);
-				AstarPath.active.Scan();
-			}
-
-
 			return true;
         }
 
@@ -304,4 +307,12 @@ public class CreateDungeon : MonoBehaviour
             }
         }
 	}
+
+    IEnumerator ScanAfterSeconds(float seconds2Wait)
+    {
+        Debug.Log("starting delay");
+        yield return new WaitForSeconds(seconds2Wait);
+        AstarPath.active.Scan();
+        Debug.Log("has scan been done?");
+    }
 }
