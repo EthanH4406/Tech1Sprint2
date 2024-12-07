@@ -25,7 +25,7 @@ public class PlayerReloadState : PlayerBaseState
 				//reset ammo
 				//subtract ammo from total ammo
 
-				gun.Reload();
+				
 			}
 		}
 		else
