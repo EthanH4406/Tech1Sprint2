@@ -4,52 +4,88 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    private Rigidbody2D rb;
-	private Vector2 targetDir;
-	private float speed;
+	public string type;
+	public float speed = 4.5f;
+
+	private GameManager gameManager;
+	private bool enable;
+	private Vector2 targetDirection;
+	private float projectileLifeTime = 5f;
+	private float timer;
+	private Rigidbody2D rb;
+	private Vector3 v;
 
 	private void Awake()
 	{
+		gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 		rb = this.gameObject.GetComponent<Rigidbody2D>();
 	}
 
-	private void Start()
+	private void Update()
 	{
-		ResetProjectile();
+		//transform.position += transform.right * Time.deltaTime * speed;
+		v = rb.velocity;
+	}
+
+	private void FixedUpdate()
+	{
+		if (enable)
+		{
+			if (Time.time > projectileLifeTime + timer)
+			{
+				ResetProjectile();
+			}
+			else
+			{
+				//rb.MovePosition(rb.position + targetDirection * speed * Time.deltaTime);
+				//rb.velocity = targetDirection * speed;
+			}
+
+
+		}
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if(collision.collider.CompareTag("Projectile") || collision.collider.CompareTag("Player"))
+		//Destroy(gameObject);
+
+		if (collision.collider.CompareTag("Projectile") || collision.collider.CompareTag("Player"))
 		{
 			Physics2D.IgnoreCollision(this.GetComponent<BoxCollider2D>(), collision.collider, true);
+			return;
 		}
-		else
+
+		if (Time.time > projectileLifeTime + timer)
 		{
-			Debug.Log("Collided with something");
 			ResetProjectile();
 		}
+		
+
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		//dmg enemy
+		
 	}
 
-	public void Launch(Vector2 dir, float s)
+	public void Launch(Vector2 direction, float _speed)
 	{
 		this.gameObject.SetActive(true);
+		enable = true;
+		targetDirection = direction.normalized;
+		speed = _speed;
+		timer = Time.time;
+		//projectileLifeTime = lifetime;
 
-		targetDir = dir.normalized;
-		rb.velocity = targetDir * speed;
+		rb.velocity = (Vector3)targetDirection * speed;
 
-		Debug.Log("Direction: " + targetDir.ToString() + " Speed: " + s.ToString());
 	}
 
 	public void ResetProjectile()
 	{
-		rb.velocity = Vector3.zero;
 		this.transform.position = Vector3.zero;
 		this.gameObject.SetActive(false);
+		enable = false;
 	}
+
 }

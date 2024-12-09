@@ -12,28 +12,12 @@ public class PlayerReloadState : PlayerBaseState
 		}
 
 		//---------------------------
-		PlayerItem heldItem = manager.inventory.GetHeldItem();
-
-		if(heldItem.type.Equals("gun"))
+		if(manager.ammoCounter.ammoCount < manager.ammoCounter.magCount)
 		{
-			GunBehaviour gun = heldItem.gameObject.GetComponent<GunBehaviour>();
-
-			if (gun.currentAmmoCount < gun.maxAmmoCount)
-			{
-				//block controls
-				//play reload animation
-				//reset ammo
-				//subtract ammo from total ammo
-
-				
-			}
-		}
-		else
-		{
-			//the player isn't holding a gun, nothing to do
-			manager.SwitchState(manager.idleState);
+			manager.ammoCounter.Reload();
 		}
 
+		manager.SwitchState(manager.idleState);
 	}
 
 	public override void ExitState(PlayerStateManager manager)

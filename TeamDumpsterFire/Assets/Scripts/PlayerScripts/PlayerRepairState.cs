@@ -6,7 +6,13 @@ public class PlayerRepairState : PlayerBaseState
 {
 	public override void EnterState(PlayerStateManager manager)
 	{
-		
+		if(manager.enableStateStatusReadout)
+		{
+			Debug.Log("Entered the repair state");
+		}
+
+		manager.ammoCounter.Repair();
+		manager.SwitchState(manager.idleState);
 	}
 
 	public override void ExitState(PlayerStateManager manager)

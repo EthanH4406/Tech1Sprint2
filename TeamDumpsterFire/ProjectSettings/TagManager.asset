@@ -9,6 +9,7 @@ TagManager:
   - GameManager
   - AmmoImg
   - trashHeap
+  - Projectile
   layers:
   - Default
   - TransparentFX
