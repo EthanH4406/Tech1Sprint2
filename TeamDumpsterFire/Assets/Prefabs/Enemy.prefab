@@ -11,11 +11,13 @@ GameObject:
   - component: {fileID: 7141575291059783664}
   - component: {fileID: 3480059514711456301}
   - component: {fileID: 9221153623394138773}
+  - component: {fileID: 1788177590061211268}
   - component: {fileID: 3507706749344218590}
   - component: {fileID: 960119019943847428}
   - component: {fileID: 4192431562821959901}
   - component: {fileID: 2895192970568505136}
   - component: {fileID: 7621315510818649239}
+  - component: {fileID: 7628692382687884161}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -135,6 +137,41 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!58 &1788177590061211268
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4677286374976111407}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 8
 --- !u!114 &3507706749344218590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179e6891d83964a4bb15f4e8ac191dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  count: -1
   spawnChance: 2
 --- !u!114 &7621315510818649239
 MonoBehaviour:
@@ -252,3 +288,24 @@ MonoBehaviour:
   playerThreshold: 100
   destOffset: 2
   timerCooldown: 0.5
+  aiPath: {fileID: 960119019943847428}
+  targetFound: 0
+  playerHealth: {fileID: 0}
+  hitDelay: 0.3
+--- !u!114 &7628692382687884161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4677286374976111407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60eb99a1312b0cc44b02ed58ead7edde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPatrol: {fileID: 7621315510818649239}
+  viewRadius: {fileID: 1788177590061211268}
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 64
