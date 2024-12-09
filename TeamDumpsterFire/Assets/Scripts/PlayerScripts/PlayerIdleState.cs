@@ -107,7 +107,7 @@ public class PlayerIdleState : PlayerBaseState
 			}
 			else
 			{
-
+				manager.SwitchState(manager.repairState);
 			}
 		}
 	}

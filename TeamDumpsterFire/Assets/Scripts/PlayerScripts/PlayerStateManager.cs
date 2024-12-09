@@ -11,6 +11,8 @@ public class PlayerStateManager : MonoBehaviour
 	public PlayerHealthBar healthBar;
 	public GameManager gameManager;
 
+	public bool enablePlayer;
+
 	//debug
 	public bool enableStateStatusReadout;
 	public bool enableControlReadOut;
@@ -20,6 +22,7 @@ public class PlayerStateManager : MonoBehaviour
 	public PlayerIdleState idleState = new PlayerIdleState();
 	public PlayerShootState shootState = new PlayerShootState();
 	public PlayerInteractState interactState = new PlayerInteractState();
+	public PlayerRepairState repairState = new PlayerRepairState();
 
 	public InputActionReference shoot;
 	public InputActionReference repair;
@@ -53,24 +56,36 @@ public class PlayerStateManager : MonoBehaviour
 	{
 		currentPosition = this.gameObject.transform.position;
 
+		if(enablePlayer)
+		{
+			currentState.UpdateState(this);
+		}
 
-
-		currentState.UpdateState(this);
 	}
 
 	private void FixedUpdate()
 	{
-		currentState.FixedUpdateState(this);
+		if(enablePlayer)
+		{
+			currentState.FixedUpdateState(this);
+		}
+			
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		currentState.OnTriggerEnterState(this, collision);
+		if(enablePlayer)
+		{
+			currentState.OnTriggerEnterState(this, collision);
+		}
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		currentState.OnCollisionEnterState(this, collision);
+		if(enablePlayer)
+		{
+			currentState.OnCollisionEnterState(this, collision);
+		}
 	}
 
 	public void SwitchState(PlayerBaseState newState)
