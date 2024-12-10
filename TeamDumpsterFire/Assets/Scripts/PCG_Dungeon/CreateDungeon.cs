@@ -65,7 +65,7 @@ public class CreateDungeon : MonoBehaviour
 
         Debug.Log("finish status: " + status.ToString());
 
-        if (status == true && pathfinding != null)
+        if (status == true)
         {
             //AstarPath.active = FindObjectOfType<AstarPath>();
             //Bounds bounds = generator.wallsTilemap.gameObject.GetComponent<TilemapCollider2D>().bounds;
@@ -73,6 +73,7 @@ public class CreateDungeon : MonoBehaviour
             //guo.updatePhysics = true;
             //AstarPath.active.UpdateGraphs(guo, 0.5f);
             //AstarPath.active.Scan();
+            Debug.Log("conditions true, scan starts now");
             StartCoroutine("ScanAfterSeconds", 0.01f);
         }
     }
