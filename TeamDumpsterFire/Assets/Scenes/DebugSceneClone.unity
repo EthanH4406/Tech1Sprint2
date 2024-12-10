@@ -7521,7 +7521,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.8, y: 0.8}
+  m_Size: {x: 0.25, y: 0.4}
   m_Direction: 0
 --- !u!1 &422690278119393037
 GameObject:
@@ -7882,6 +7882,7 @@ MonoBehaviour:
   ammoCounter: {fileID: 0}
   healthBar: {fileID: 0}
   gameManager: {fileID: 0}
+  anim: {fileID: 0}
   enableStateStatusReadout: 1
   enableControlReadOut: 0
   shoot: {fileID: -3222935421911258011, guid: 12a5ef1d460da004bb3d57c2360fe3d7, type: 3}
@@ -7978,7 +7979,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 18.44, y: 11.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1318882886}
@@ -8041,7 +8042,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aa1abbbb816dc4c4bbc6ee85b6a6ca43, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8085,6 +8086,8 @@ MonoBehaviour:
   dashCooldown: 0.5
   rb: {fileID: 1587051261031047132}
   dashParticles: {fileID: 1318882884}
+  anim: {fileID: 8986127198675663797}
+  sprite: {fileID: 6499310325010631790}
   Movement: {fileID: 2181013392571161817, guid: 12a5ef1d460da004bb3d57c2360fe3d7, type: 3}
 --- !u!1 &7965820144431689241
 GameObject:
@@ -8201,6 +8204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4622290239861215405}
   - component: {fileID: 6499310325010631790}
+  - component: {fileID: 8986127198675663797}
   - component: {fileID: 1587051261031047132}
   - component: {fileID: 7604429326394986290}
   - component: {fileID: 340216962080384216}
@@ -8269,6 +8273,27 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 194dd2515aa3ddc4297fc4e9c78a1cf4, type: 3}
   - {fileID: 21300000, guid: 67a7138d49df9b449aa4c9cb429fdc8a, type: 3}
   hpBar: {fileID: 1323177452}
+--- !u!95 &8986127198675663797
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8986127198675663794}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eafc7748a582257459b25a1db496bada, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

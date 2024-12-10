@@ -10,6 +10,8 @@ public class PlayerStateManager : MonoBehaviour
 	public PlayerAmmoCounter ammoCounter;
 	public PlayerHealthBar healthBar;
 	public GameManager gameManager;
+	public Animator anim;
+
 	public PauseMenuBehaviour pauseMenu;
 
 	public bool enablePlayer;
