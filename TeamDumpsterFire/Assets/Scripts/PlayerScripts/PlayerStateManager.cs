@@ -10,6 +10,7 @@ public class PlayerStateManager : MonoBehaviour
 	public PlayerAmmoCounter ammoCounter;
 	public PlayerHealthBar healthBar;
 	public GameManager gameManager;
+	public PauseMenuBehaviour pauseMenu;
 
 	public bool enablePlayer;
 
@@ -29,6 +30,7 @@ public class PlayerStateManager : MonoBehaviour
 	public InputActionReference reload;
 	public InputActionReference drop;
 	public InputActionReference interact;
+	public InputActionReference openMenu;
 
 	public Vector2 currentPosition;
 	public float gunTimer;
@@ -55,6 +57,7 @@ public class PlayerStateManager : MonoBehaviour
 	void Update()
 	{
 		currentPosition = this.gameObject.transform.position;
+		enablePlayer = !pauseMenu.isPaused;
 
 		if(enablePlayer)
 		{

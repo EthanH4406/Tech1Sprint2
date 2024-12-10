@@ -110,5 +110,16 @@ public class PlayerIdleState : PlayerBaseState
 				manager.SwitchState(manager.repairState);
 			}
 		}
+		else if(manager.openMenu.action.ReadValue<float>()== 1)
+		{
+			if(manager.enableControlReadOut)
+			{
+				Debug.Log("Player pressed the menu button");
+			}
+			else
+			{
+				manager.pauseMenu.PauseGame();
+			}
+		}
 	}
 }
