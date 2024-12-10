@@ -291,7 +291,7 @@ MonoBehaviour:
   aiPath: {fileID: 960119019943847428}
   targetFound: 0
   playerHealth: {fileID: 0}
-  hitDelay: 0.3
+  hitDelay: 0.5
 --- !u!114 &7628692382687884161
 MonoBehaviour:
   m_ObjectHideFlags: 0
