@@ -17,9 +17,13 @@ public class EnemyPatrol : MonoBehaviour
     float timer;
     public float timerCooldown;
 
+    public AIPath aiPath;
+    public bool targetFound = false;
+
     private Vector2 posOfWaypoint;
 
     public PlayerHealthBar playerHealth;
+    public float hitDelay;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +31,7 @@ public class EnemyPatrol : MonoBehaviour
         allowPathing = true;
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthBar>();
+        //aiPath = GetComponent<AIPath>();
         SetDestination();
         timer = Time.time;
     }
@@ -45,11 +50,14 @@ public class EnemyPatrol : MonoBehaviour
         }
 
         
-        if(Vector2.Distance(posOfWaypoint, enemyPos.position) <= destOffset && Time.time >= timer + timerCooldown && allowPathing)
+        if(Vector2.Distance(posOfWaypoint, enemyPos.position) <= destOffset && Time.time >= timer + timerCooldown && allowPathing && !targetFound)
         {
             SetDestination();
         }
-        
+        if (targetFound && targetSetter.target != playerPos)
+        {
+            targetSetter.target = playerPos;
+        }
     }
 
     void SetDestination()
@@ -76,9 +84,17 @@ public class EnemyPatrol : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (GetComponent<BoxCollider2D>().IsTouching(collision) && collision.gameObject.tag == "Player")
         {
             playerHealth.TakeDamage();
+            aiPath.canMove = false;
+            StartCoroutine("HitDelay", hitDelay);
         }
+    }
+
+    IEnumerator HitDelay(int hitDelay)
+    {
+        yield return new WaitForSeconds(hitDelay);
+        aiPath.canMove = true;
     }
 }
