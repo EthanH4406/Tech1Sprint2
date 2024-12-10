@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem dashParticles;
 
     public InputActionReference Movement;
+    public InputActionReference dash;
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         }
         //Debug.Log(facingH + ", " + facingV);
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        if (dash.action.WasPressedThisFrame() && canDash)
         {
             canMove = false;
             canDash = false;
