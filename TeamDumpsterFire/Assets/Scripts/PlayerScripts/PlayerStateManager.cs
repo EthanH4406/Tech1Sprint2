@@ -10,6 +10,7 @@ public class PlayerStateManager : MonoBehaviour
 	public PlayerAmmoCounter ammoCounter;
 	public PlayerHealthBar healthBar;
 	public GameManager gameManager;
+	public Animator anim;
 
 	//debug
 	public bool enableStateStatusReadout;

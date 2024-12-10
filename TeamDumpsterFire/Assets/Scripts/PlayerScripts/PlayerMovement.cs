@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     string facingH;
     string facingV;
     public ParticleSystem dashParticles;
+    public Animator anim;
+    public SpriteRenderer sprite;
 
     public InputActionReference Movement;
 
@@ -38,23 +40,43 @@ public class PlayerMovement : MonoBehaviour
 
         //Debug.Log(x + ", " + y);
         dir = new Vector2(x, y).normalized;
-        switch (x)
-        {
-            case -1:
-                facingH = "left";
-                break;
-            case 1:
-                facingH = "right";
-                break;
-        }
-        switch (y)
+        switch (dir.y)
         {
             case 1:
+                ClearWalkCycle();
+                anim.SetBool("walking", true);
+                anim.SetBool("up", true);
                 facingV = "up";
                 break;
             case -1:
+                ClearWalkCycle();
+                anim.SetBool("walking", true);
+                anim.SetBool("down", true);
                 facingV = "down";
                 break;
+        }
+        switch (dir.x)
+        {
+            case -1:
+                ClearWalkCycle();
+                sprite.flipX = false;
+                anim.SetBool("walking", true);
+                anim.SetBool("side", true);
+                facingH = "left";
+                break;
+            case 1:
+                ClearWalkCycle();
+                sprite.flipX = true;
+                anim.SetBool("walking", true);
+                anim.SetBool("side", true);
+                facingH = "right";
+                break;
+        }
+
+        if (x == 0 && y == 0)
+        {
+            ClearWalkCycle();
+            anim.SetBool("idle", true);
         }
         //Debug.Log(facingH + ", " + facingV);
 
@@ -100,6 +122,15 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(dir.x * dashSpeed, dir.y * dashSpeed);
         }
         //dir = new Vector2(dir.x - 0.1f, dir.y - 0.1f);
+    }
+
+    void ClearWalkCycle()
+    {
+        anim.SetBool("idle", false);
+        anim.SetBool("side", false);
+        anim.SetBool("down", false);
+        anim.SetBool("up", false);
+        anim.SetBool("walking", false);
     }
 
     IEnumerator DashTime()
