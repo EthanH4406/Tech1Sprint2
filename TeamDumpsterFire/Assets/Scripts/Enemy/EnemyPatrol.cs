@@ -34,6 +34,8 @@ public class EnemyPatrol : MonoBehaviour
         //aiPath = GetComponent<AIPath>();
         SetDestination();
         timer = Time.time;
+        aiPath.canMove = false;
+        StartCoroutine("HitDelay", 0.01f);
     }
 
     // Update is called once per frame
@@ -92,7 +94,7 @@ public class EnemyPatrol : MonoBehaviour
         }
     }
 
-    IEnumerator HitDelay(int hitDelay)
+    IEnumerator HitDelay(float hitDelay)
     {
         yield return new WaitForSeconds(hitDelay);
         aiPath.canMove = true;
