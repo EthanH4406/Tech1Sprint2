@@ -92,7 +92,7 @@ public class PlayerStateManager : MonoBehaviour
 		if(collision.CompareTag("pickHP"))
 		{
 			//hp pickup
-			healthBar.Heal(1);
+			healthBar.Heal();
 			collision.gameObject.GetComponent<GenericBuff>().ResetBuff();
 
 			if(buffreadout)
@@ -132,6 +132,17 @@ public class PlayerStateManager : MonoBehaviour
 			{
 				Debug.Log("Picked up Speed pickup.");
 			}
+		}
+		else if(collision.CompareTag("pickHurt"))
+		{
+			healthBar.TakeDamage();
+			collision.gameObject.GetComponent<GenericBuff>().ResetBuff();
+
+			if(buffreadout)
+			{
+				Debug.Log("Picked up Hurtful pickup");
+			}
+
 		}
 
 	}
