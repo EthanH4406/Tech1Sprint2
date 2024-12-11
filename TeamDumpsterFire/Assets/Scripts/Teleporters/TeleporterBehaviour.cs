@@ -4,37 +4,29 @@ using UnityEngine;
 
 public class TeleporterBehaviour : MonoBehaviour
 {
-    private Vector3 entrancePos;
-    private Vector3 exitPos;
+    private GameObject exit;
 
-	public GameObject entranceObj;
-	public GameObject exitObj;
-
-	private GameObject player;
-
+    private GameObject player;
 
 	private void Awake()
 	{
 		player = GameObject.FindGameObjectWithTag("Player");
-	}
-
-	private void Start()
-	{
-		entrancePos = entranceObj.transform.position;
-		exitPos = exitObj.transform.position;
+		exit = GameObject.FindGameObjectWithTag("dEntrance");
 	}
 
 	private void Update()
 	{
-		if(entranceObj.GetComponent<CircleCollider2D>().bounds.Contains(player.transform.position))
+		if(exit == null)
 		{
-			player.transform.position = exitPos;
+			exit = GameObject.FindGameObjectWithTag("dEntrance");
 		}
 	}
 
-	public void SetTeleporter(Vector3 a, Vector3 b)
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		entranceObj.transform.position = a;
-		exitObj.transform.position = b;
+		if(collision.CompareTag("Player"))
+		{
+			player.transform.position = exit.transform.position;
+		}
 	}
 }
