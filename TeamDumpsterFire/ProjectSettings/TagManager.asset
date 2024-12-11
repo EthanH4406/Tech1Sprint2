@@ -10,6 +10,13 @@ TagManager:
   - AmmoImg
   - trashHeap
   - Projectile
+  - pickHP
+  - pickAmmo
+  - pickSpeed
+  - pickDmg
+  - pickHurt
+  - dEntrance
+  - bEntrance
   layers:
   - Default
   - TransparentFX

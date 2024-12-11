@@ -5,13 +5,29 @@ using UnityEngine.UI;
 
 public class PlayerAmmoCounter : MonoBehaviour
 {
+    [Header("Repair System")]
+	public float chanceToTakeDamage = 3;
 
-    [Header("Debug")]
+    [Header("Bullet Damage Settings")]
+	public float maxBulletDmg;
+	public float minBulletDmg;
+	public float initialDmg = 7;
+    public int initialMagCount = 12;
+
+    [Header("Bullet Firerate Settings")]
+	public float minDelay;
+	public float maxDelay;
+	public float initialDelay = 3;
+
+	[Header("Debug")]
     public bool enableAmmoReadout;
 
     public int ammoCount;
 
+    [Header("UI")]
     public Image[] bulletImages;
+
+
 
     private GameManager gameManager;
 
@@ -22,17 +38,12 @@ public class PlayerAmmoCounter : MonoBehaviour
     private Vector2 mousePos;
 
     private int healthStage;
-    private float chanceToTakeDamage = 3;
+
 
     private float bulletDmg;
-    private float maxBulletDmg;
-    private float minBulletDmg;
-    public float initialDmg = 7;
+
 
 	private float delay = 0.1f;
-    private float minDelay;
-    private float maxDelay;
-    public float initialDelay = 3;
 
 
 	private void Awake()
@@ -47,8 +58,10 @@ public class PlayerAmmoCounter : MonoBehaviour
         delay = initialDelay;
         bulletDmg = initialDmg;
 
-        ammoCount = bulletImages.Length;
-        magCount = bulletImages.Length;
+        magCount = initialMagCount;
+        ammoCount = magCount;
+
+        maxAmmoCount = bulletImages.Length;
 
         maxIndex = bulletImages.Length - 1;
 
@@ -162,13 +175,21 @@ public class PlayerAmmoCounter : MonoBehaviour
 
     public void Reload()
     {
+        Debug.Log("Reloaded " + magCount + " bullets");
         AddAmmo(magCount);
     }
 
     public void IncreaseAmmoCount()
     {
+        Debug.Log("Current mag count: " + magCount + ". New Mag count: " + (magCount + 1).ToString());
+
         magCount++;
-        magCount = Mathf.Clamp(magCount, 0, maxAmmoCount);
+        //magCount = Mathf.Clamp(magCount, 0, maxAmmoCount);
+
+        if(magCount >= maxAmmoCount)
+        {
+            magCount = maxAmmoCount;
+        }
     }
 
     public void IncreaseFirerate()
@@ -176,6 +197,16 @@ public class PlayerAmmoCounter : MonoBehaviour
         delay -= 0.1f;
         delay = Mathf.Clamp(delay, 0.1f, 5000f);
 
+    }
+
+    public void IncreaseDamage()
+    {
+        bulletDmg += 1f;
+        
+        if(bulletDmg >= maxBulletDmg)
+        {
+            bulletDmg = maxBulletDmg;
+        }
     }
 
 
