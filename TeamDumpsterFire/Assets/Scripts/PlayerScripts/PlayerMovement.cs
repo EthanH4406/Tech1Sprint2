@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     public InputActionReference Movement;
     public InputActionReference dash;
+    public PauseMenuBehaviour pause;
 
     // Start is called before the first frame update
     void Start()
@@ -64,32 +65,64 @@ public class PlayerMovement : MonoBehaviour
         {
             //ClearWalkCycle();
             //anim.SetBool("idle", true);
-            anim.SetBool("walking", false);
+
+            if(!pause.isPaused)
+            {
+                anim.SetBool("walking", false);
+            }
+
+            
             //Debug.Log("what");
         }
         else
         {
             ClearWalkCycle();
-            anim.SetBool("walking", true);
+
+			if (!pause.isPaused)
+			{
+				anim.SetBool("walking", true);
+			}
+
+			
             if (x != 0)
             {
-                anim.SetBool("side", true);
-                if (x > 0)
-                {
-                    sprite.flipX = true;
-                }
-                else
-                {
-                    sprite.flipX = false;
-                }
+
+				if (!pause.isPaused)
+				{
+                    anim.SetBool("side", true);
+				}
+
+
+				if (!pause.isPaused)
+				{
+					if (x > 0)
+					{
+						sprite.flipX = true;
+					}
+					else
+					{
+						sprite.flipX = false;
+					}
+				}
+
             }
             else if (y > 0)
             {
-                anim.SetBool("up", true);
+				if (!pause.isPaused)
+				{
+                    anim.SetBool("up", true);
+				}
+
+				
             }
             else
             {
-                anim.SetBool("down", true);
+				if (!pause.isPaused)
+				{
+                    anim.SetBool("down", true);
+				}
+
+				
             }
         }
         //Debug.Log(facingH + ", " + facingV);
@@ -140,11 +173,17 @@ public class PlayerMovement : MonoBehaviour
 
     void ClearWalkCycle()
     {
-        //anim.SetBool("walking", false);
-        //anim.SetBool("idle", false);
-        anim.SetBool("side", false);
-        anim.SetBool("down", false);
-        anim.SetBool("up", false);
+		//anim.SetBool("walking", false);
+		//anim.SetBool("idle", false);
+
+		if (!pause.isPaused)
+		{
+            anim.SetBool("side", false);
+            anim.SetBool("down", false);
+            anim.SetBool("up", false);
+		}
+
+		
     }
 
     IEnumerator DashTime()

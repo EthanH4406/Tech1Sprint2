@@ -54,6 +54,10 @@ public class PlayerBullet : MonoBehaviour
 			Physics2D.IgnoreCollision(this.GetComponent<BoxCollider2D>(), collision.collider, true);
 			return;
 		}
+		else
+		{
+			ResetProjectile() ;
+		}
 
 		if (Time.time > projectileLifeTime + timer)
 		{
