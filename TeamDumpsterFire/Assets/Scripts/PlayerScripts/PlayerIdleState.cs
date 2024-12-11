@@ -55,7 +55,7 @@ public class PlayerIdleState : PlayerBaseState
 			}
 			else
 			{
-				manager.inventory.DropHeldItem(manager.currentPosition);
+				//manager.inventory.DropHeldItem(manager.currentPosition);
 			}
 		}
 		else if(manager.reload.action.ReadValue<float>() == 1)

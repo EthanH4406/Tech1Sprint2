@@ -17,6 +17,8 @@ public class PlayerReloadState : PlayerBaseState
 			manager.ammoCounter.Reload();
 		}
 
+		//manager.ammoCounter.Reload();
+
 		manager.SwitchState(manager.idleState);
 	}
 

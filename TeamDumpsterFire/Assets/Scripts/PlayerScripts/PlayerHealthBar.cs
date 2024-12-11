@@ -65,7 +65,9 @@ public class PlayerHealthBar : MonoBehaviour
     public void Heal(int amo)
     {
         currentHP += amo;
-        currentHP = Mathf.Clamp(currentHP, 0, maxHP);
+        currentHP = Mathf.Clamp(currentHP, 0, maxHP+1);
+
+        
 
         currentSpriteIndex = currentHP - 1;
         activeSprite = sprites[currentSpriteIndex];
