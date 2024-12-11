@@ -8,8 +8,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 7175c47d09f382a49b0ff653e9d9c23e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DebugScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/MainLevel.unity
+    guid: 636fd7c5eb73a774596442f0065a7016
+  - enabled: 1
+    path: Assets/Scenes/DeathMenu.unity
+    guid: f48a6d58951f07a4780df004e9972d21
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 210425ff65c85e740ac0c0a34257d3c9, type: 2}

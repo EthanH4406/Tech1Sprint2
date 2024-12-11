@@ -10,6 +10,28 @@ public class PlayerInteractState : PlayerBaseState
 		{
 			Debug.Log("Entered the interact state");
 		}
+
+		//check a circle radius for any gameobjects with the tag trashHeap
+		//get that game object
+		//call the spawn function
+
+		float interactRadius = 1f;
+
+		RaycastHit2D[] foundColliders = Physics2D.CircleCastAll(manager.currentPosition, interactRadius, Vector2.up);
+
+		for(int i=0; i<foundColliders.Length; i++)
+		{
+			if (foundColliders[i].collider.CompareTag("trashHeap"))
+			{
+				TrashFishingBehaviour fishingSpawner = foundColliders[i].collider.gameObject.GetComponent<TrashFishingBehaviour>();
+				fishingSpawner.SpawnItem();
+				break;
+
+			}
+		}
+
+		manager.SwitchState(manager.idleState);
+
 	}
 
 	public override void ExitState(PlayerStateManager manager)
@@ -29,12 +51,7 @@ public class PlayerInteractState : PlayerBaseState
 
 	public override void OnTriggerEnterState(PlayerStateManager manager, Collider2D collision)
 	{
-		if(collision.CompareTag("trashHeap"))
-		{
-			TrashFishingBehaviour trash = collision.gameObject.GetComponent<TrashFishingBehaviour>();
-			trash.Interact();
-			manager.SwitchState(manager.idleState);
-		}
+		
 	}
 
 	public override void UpdateState(PlayerStateManager manager)

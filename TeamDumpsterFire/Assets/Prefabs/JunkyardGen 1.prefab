@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7478677275320466621
+--- !u!1 &2295586400233339620
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8271453510636282166}
-  - component: {fileID: 9082205295878603824}
-  - component: {fileID: 8373659483101598414}
+  - component: {fileID: 2001693412113990059}
+  - component: {fileID: 5309217977122018645}
+  - component: {fileID: 5301470060928617582}
   m_Layer: 0
-  m_Name: JunkyardGen
+  m_Name: JunkyardGen 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8271453510636282166
+--- !u!4 &2001693412113990059
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7478677275320466621}
+  m_GameObject: {fileID: 2295586400233339620}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -33,13 +33,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9082205295878603824
+--- !u!114 &5309217977122018645
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7478677275320466621}
+  m_GameObject: {fileID: 2295586400233339620}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cdfafdf206ebaff409af7f7c89861bb2, type: 3}
@@ -65,21 +65,21 @@ MonoBehaviour:
   offset: 3
   startPos: {x: 0, y: 0}
   floorTile:
-  - {fileID: 11400000, guid: b7e407677e5b37b4e8364915eb19e870, type: 2}
+  - {fileID: 11400000, guid: 8ef3255356d577147a5bbed82df3bc0f, type: 2}
   wallTop:
-  - {fileID: 11400000, guid: 0bae4ae2181fbf24db4529ecccc8e528, type: 2}
+  - {fileID: 11400000, guid: 75b33f188f10aa247aaf454500091142, type: 2}
   wallSideRight:
-  - {fileID: 11400000, guid: 0bae4ae2181fbf24db4529ecccc8e528, type: 2}
+  - {fileID: 11400000, guid: 75b33f188f10aa247aaf454500091142, type: 2}
   wallSideLeft:
-  - {fileID: 11400000, guid: 0bae4ae2181fbf24db4529ecccc8e528, type: 2}
+  - {fileID: 11400000, guid: 75b33f188f10aa247aaf454500091142, type: 2}
   wallBottom:
-  - {fileID: 11400000, guid: 0bae4ae2181fbf24db4529ecccc8e528, type: 2}
+  - {fileID: 11400000, guid: 75b33f188f10aa247aaf454500091142, type: 2}
   wallFull:
-  - {fileID: 11400000, guid: 0bae4ae2181fbf24db4529ecccc8e528, type: 2}
+  - {fileID: 11400000, guid: 75b33f188f10aa247aaf454500091142, type: 2}
   wallInnerCornerDownLeft:
-  - {fileID: 11400000, guid: 0bae4ae2181fbf24db4529ecccc8e528, type: 2}
+  - {fileID: 11400000, guid: 61c0f81021010474bae8aeb20937a580, type: 2}
   wallInnerCornerDownRight:
-  - {fileID: 11400000, guid: 0bae4ae2181fbf24db4529ecccc8e528, type: 2}
+  - {fileID: 11400000, guid: 88014404573cf9e42977dd0c98a0e989, type: 2}
   wallDiagonalCornerDownRight:
   - {fileID: 11400000, guid: 0bae4ae2181fbf24db4529ecccc8e528, type: 2}
   wallDiagonalCornerDownLeft:
@@ -89,13 +89,13 @@ MonoBehaviour:
   wallDiagonalCornerUpLeft:
   - {fileID: 11400000, guid: 0bae4ae2181fbf24db4529ecccc8e528, type: 2}
   generatedRooms: []
---- !u!114 &8373659483101598414
+--- !u!114 &5301470060928617582
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7478677275320466621}
+  m_GameObject: {fileID: 2295586400233339620}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74beb41323ce19a4a887d3b114b3a503, type: 3}
@@ -105,10 +105,25 @@ MonoBehaviour:
   antiSpawnRadius: 1
   numberOfSamplesBeforeRejection: 30
   dstFromStartToEnd: 50
-  startPosAsset: {fileID: 8250238738380780113, guid: 737810db814967f44b4e41925ef8ed28, type: 3}
+  startPosAsset: {fileID: 896736184381347185, guid: bbef02d2c38b4a048b1903773eebf8fc, type: 3}
   dungeonExitAsset: {fileID: 504348791833722018, guid: 21fbf6ab633ac024b8ea92fffa4ae8c7, type: 3}
   listOfAssetsToSpread:
-  - {fileID: 0}
+  - {fileID: 514290804515209466, guid: 14dc6deb2f9de5b4da4266afc2db8593, type: 3}
+  - {fileID: 3369557056020952958, guid: 33a0a602b516b4c499d273fd3bb4f292, type: 3}
+  - {fileID: 2720751983526708305, guid: 57503664e9128014b97e1d0a87d269bf, type: 3}
+  - {fileID: 589491673407825736, guid: 0b2797d49075c9b4a9450d8eccda85e8, type: 3}
+  - {fileID: 6104707169120007338, guid: 54596211f562bd549932129330fb37a6, type: 3}
+  - {fileID: 3857959494236990541, guid: 4ab099fe8ff0d8a40853acfac9745739, type: 3}
+  - {fileID: 2501277412395930170, guid: 9e2533dfd73bb6846a8848905d71eb75, type: 3}
+  - {fileID: 843270140208991070, guid: 54f1174d8539cef4b9c84244b71a5ce0, type: 3}
+  - {fileID: 6650749096828024324, guid: dd24f707c1b9ab04c8474021524c78d5, type: 3}
+  - {fileID: 6031894817316461903, guid: dded101499474cc4e8b2602a27a6251e, type: 3}
+  - {fileID: 8757826468617197027, guid: 0d5a04a65d202b74186fa9a8948799de, type: 3}
+  - {fileID: 5477878313906475000, guid: e01e78d513171404fbebdff964a77725, type: 3}
+  - {fileID: 7386958903586454142, guid: b8ec919c123b6d74f89881c1000e1c51, type: 3}
+  - {fileID: 6535319917781031095, guid: 612e154a416a35640ac8e55ac7e35df9, type: 3}
+  - {fileID: 1886741999298609634, guid: 95a4945d6425ef645b1c4cc2f473538b, type: 3}
+  - {fileID: 2806282349890432515, guid: 32a3f869c4e475c40b2c50b52d95843b, type: 3}
   showPoints: 0
   printDst: 0
   spawnedObjects: []
