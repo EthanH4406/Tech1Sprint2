@@ -41,43 +41,56 @@ public class PlayerMovement : MonoBehaviour
 
         //Debug.Log(x + ", " + y);
         dir = new Vector2(x, y).normalized;
-        switch (dir.y)
+        switch (y)
         {
             case 1:
-                ClearWalkCycle();
-                anim.SetBool("walking", true);
-                anim.SetBool("up", true);
                 facingV = "up";
                 break;
             case -1:
-                ClearWalkCycle();
-                anim.SetBool("walking", true);
-                anim.SetBool("down", true);
                 facingV = "down";
                 break;
         }
-        switch (dir.x)
+        switch (x)
         {
             case -1:
-                ClearWalkCycle();
-                sprite.flipX = false;
-                anim.SetBool("walking", true);
-                anim.SetBool("side", true);
                 facingH = "left";
                 break;
             case 1:
-                ClearWalkCycle();
-                sprite.flipX = true;
-                anim.SetBool("walking", true);
-                anim.SetBool("side", true);
                 facingH = "right";
                 break;
         }
 
         if (x == 0 && y == 0)
         {
+            //ClearWalkCycle();
+            //anim.SetBool("idle", true);
+            anim.SetBool("walking", false);
+            //Debug.Log("what");
+        }
+        else
+        {
             ClearWalkCycle();
-            anim.SetBool("idle", true);
+            anim.SetBool("walking", true);
+            if (x != 0)
+            {
+                anim.SetBool("side", true);
+                if (x > 0)
+                {
+                    sprite.flipX = true;
+                }
+                else
+                {
+                    sprite.flipX = false;
+                }
+            }
+            else if (y > 0)
+            {
+                anim.SetBool("up", true);
+            }
+            else
+            {
+                anim.SetBool("down", true);
+            }
         }
         //Debug.Log(facingH + ", " + facingV);
 
@@ -127,11 +140,11 @@ public class PlayerMovement : MonoBehaviour
 
     void ClearWalkCycle()
     {
-        anim.SetBool("idle", false);
+        //anim.SetBool("walking", false);
+        //anim.SetBool("idle", false);
         anim.SetBool("side", false);
         anim.SetBool("down", false);
         anim.SetBool("up", false);
-        anim.SetBool("walking", false);
     }
 
     IEnumerator DashTime()
