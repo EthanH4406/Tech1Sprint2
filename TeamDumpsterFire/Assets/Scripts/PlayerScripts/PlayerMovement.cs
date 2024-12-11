@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     string facingH;
     string facingV;
     public ParticleSystem dashParticles;
+    public Animator anim;
+    public SpriteRenderer sprite;
 
     public InputActionReference Movement;
     public InputActionReference dash;
@@ -39,6 +41,15 @@ public class PlayerMovement : MonoBehaviour
 
         //Debug.Log(x + ", " + y);
         dir = new Vector2(x, y).normalized;
+        switch (y)
+        {
+            case 1:
+                facingV = "up";
+                break;
+            case -1:
+                facingV = "down";
+                break;
+        }
         switch (x)
         {
             case -1:
@@ -48,14 +59,38 @@ public class PlayerMovement : MonoBehaviour
                 facingH = "right";
                 break;
         }
-        switch (y)
+
+        if (x == 0 && y == 0)
         {
-            case 1:
-                facingV = "up";
-                break;
-            case -1:
-                facingV = "down";
-                break;
+            //ClearWalkCycle();
+            //anim.SetBool("idle", true);
+            anim.SetBool("walking", false);
+            //Debug.Log("what");
+        }
+        else
+        {
+            ClearWalkCycle();
+            anim.SetBool("walking", true);
+            if (x != 0)
+            {
+                anim.SetBool("side", true);
+                if (x > 0)
+                {
+                    sprite.flipX = true;
+                }
+                else
+                {
+                    sprite.flipX = false;
+                }
+            }
+            else if (y > 0)
+            {
+                anim.SetBool("up", true);
+            }
+            else
+            {
+                anim.SetBool("down", true);
+            }
         }
         //Debug.Log(facingH + ", " + facingV);
 
@@ -101,6 +136,15 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(dir.x * dashSpeed, dir.y * dashSpeed);
         }
         //dir = new Vector2(dir.x - 0.1f, dir.y - 0.1f);
+    }
+
+    void ClearWalkCycle()
+    {
+        //anim.SetBool("walking", false);
+        //anim.SetBool("idle", false);
+        anim.SetBool("side", false);
+        anim.SetBool("down", false);
+        anim.SetBool("up", false);
     }
 
     IEnumerator DashTime()
