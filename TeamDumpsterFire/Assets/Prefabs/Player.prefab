@@ -4843,9 +4843,9 @@ GameObject:
   - component: {fileID: 2855384941568883257}
   - component: {fileID: -3850383268646137389}
   - component: {fileID: 8703750503455505394}
-  - component: {fileID: 6932943656147847950}
   - component: {fileID: 6337830903043950215}
   - component: {fileID: 2062241090986947474}
+  - component: {fileID: 793105120655605391}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4992,6 +4992,7 @@ MonoBehaviour:
   sprite: {fileID: 1448524214589585765}
   Movement: {fileID: 2181013392571161817, guid: 12a5ef1d460da004bb3d57c2360fe3d7, type: 3}
   dash: {fileID: -8197252893040100472, guid: 12a5ef1d460da004bb3d57c2360fe3d7, type: 3}
+  pause: {fileID: 0}
 --- !u!70 &-3850383268646137389
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5039,35 +5040,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efbdd742619d9b4f977b04074111a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
-  ammoCounter: {fileID: 0}
-  healthBar: {fileID: 0}
-  gameManager: {fileID: 0}
-  anim: {fileID: 4241291063594954986}
   pauseMenu: {fileID: 0}
-  enablePlayer: 1
-  enableStateStatusReadout: 0
-  enableControlReadOut: 0
+  anim: {fileID: 4241291063594954986}
   shoot: {fileID: -3222935421911258011, guid: 12a5ef1d460da004bb3d57c2360fe3d7, type: 3}
   repair: {fileID: 8931438417015244742, guid: 12a5ef1d460da004bb3d57c2360fe3d7, type: 3}
   reload: {fileID: -1465421943117672882, guid: 12a5ef1d460da004bb3d57c2360fe3d7, type: 3}
   drop: {fileID: -3956584743016628519, guid: 12a5ef1d460da004bb3d57c2360fe3d7, type: 3}
   interact: {fileID: -1385131326203770772, guid: 12a5ef1d460da004bb3d57c2360fe3d7, type: 3}
   openMenu: {fileID: -9050157399764276817, guid: 12a5ef1d460da004bb3d57c2360fe3d7, type: 3}
+  enableStateStatusReadout: 0
+  enableControlReadOut: 0
+  buffreadout: 0
+  ammoCounter: {fileID: 0}
+  healthBar: {fileID: 0}
+  gameManager: {fileID: 0}
+  enablePlayer: 1
   currentPosition: {x: 0, y: 0}
   gunTimer: 0
---- !u!114 &6932943656147847950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3647108952516824761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9ea4e3e9ccc15840ba30dba8f1f880c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6337830903043950215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5110,6 +5099,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b951de92942e284e81da5ae5a812ca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chanceToTakeDamage: 3
+  maxBulletDmg: 15
+  minBulletDmg: 1
+  initialDmg: 7
+  initialMagCount: 12
+  minDelay: 0.1
+  maxDelay: 10
+  initialDelay: 0.75
   enableAmmoReadout: 0
   ammoCount: 0
   bulletImages:
@@ -5147,9 +5144,26 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  magCount: 0
-  initialDmg: 7
-  initialDelay: 1
+  magCount: 12
+--- !u!114 &793105120655605391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3647108952516824761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36c38a1c4ac64644ba9f077b843c6ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 561bca5aef931c14d867948acd461f83, type: 3}
+  - {fileID: 21300000, guid: 06726e6a596c7f241b16b0b3d1a7dddf, type: 3}
+  - {fileID: 21300000, guid: 10206f7ae844c41478cd143d37bd4d41, type: 3}
+  - {fileID: 21300000, guid: 194dd2515aa3ddc4297fc4e9c78a1cf4, type: 3}
+  - {fileID: 21300000, guid: 67a7138d49df9b449aa4c9cb429fdc8a, type: 3}
+  hpBar: {fileID: 0}
 --- !u!1 &5748234604661188376
 GameObject:
   m_ObjectHideFlags: 0

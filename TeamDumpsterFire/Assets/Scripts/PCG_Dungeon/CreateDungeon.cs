@@ -63,7 +63,7 @@ public class CreateDungeon : MonoBehaviour
         tempTimer = Time.time;
         bool status = CreateJunkyard();
 
-        Debug.Log("finish status: " + status.ToString());
+        //Debug.Log("finish status: " + status.ToString());
 
         if (status == true)
         {
@@ -73,7 +73,7 @@ public class CreateDungeon : MonoBehaviour
             //guo.updatePhysics = true;
             //AstarPath.active.UpdateGraphs(guo, 0.5f);
             //AstarPath.active.Scan();
-            Debug.Log("conditions true, scan starts now");
+            //Debug.Log("conditions true, scan starts now");
             StartCoroutine("ScanAfterSeconds", 0.01f);
         }
     }
@@ -86,14 +86,14 @@ public class CreateDungeon : MonoBehaviour
         bool mapGenSuccess = generator.GenerateDungeonMap();
         bool populatedMap = false;
 
-        Debug.Log("MapGenSuccess: " + mapGenSuccess.ToString());
+        //Debug.Log("MapGenSuccess: " + mapGenSuccess.ToString());
 
 		if (mapGenSuccess)
         {
             populatedMap = PopulateMapWithAssets();
         }
 
-        Debug.Log("Populated Map: " + populatedMap.ToString());
+        //Debug.Log("Populated Map: " + populatedMap.ToString());
 
         if(populatedMap)
         {
