@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealthBar : MonoBehaviour
@@ -11,6 +12,7 @@ public class PlayerHealthBar : MonoBehaviour
     public Sprite[] sprites;
     //public GameObject healthBarImage;
 
+    public Animator transitionAnimator;
 
     public Image hpBar;
     private Sprite activeSprite;
@@ -81,7 +83,25 @@ public class PlayerHealthBar : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player has died");
-        //Application.Quit();
+        LoadDeathScreen();
     }
+
+	public void LoadDeathScreen()
+	{
+		transitionAnimator.SetTrigger("FadeOut");
+		StartCoroutine(LoadGameAsync());
+	}
+
+	IEnumerator LoadGameAsync()
+	{
+		yield return new WaitForSeconds(1.5f);
+
+		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(0);      //change this to death scene index
+
+		while (!asyncLoad.isDone)
+		{
+			yield return null;
+		}
+	}
 
 }

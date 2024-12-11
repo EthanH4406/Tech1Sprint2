@@ -11,6 +11,8 @@ public class PauseMenuBehaviour : MonoBehaviour
     public CanvasGroup gameUI;
     public CanvasGroup Menu;
 
+    public Animator animator;
+
     private void DisableOptions()
     {
         optionsPanel.alpha = 0;
@@ -86,7 +88,20 @@ public class PauseMenuBehaviour : MonoBehaviour
 
     public void ReturnToMenu()
     {
-        //return to main menu
-        //SceneManager.LoadScene(SceneManager.GetSceneByBuildIndex(0));
+        animator.SetTrigger("FadeOut");
+        UnPauseGame();
+        StartCoroutine(LoadGameAsync());
     }
+
+	IEnumerator LoadGameAsync()
+	{
+		yield return new WaitForSeconds(1.5f);
+
+		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(0);
+
+		while (!asyncLoad.isDone)
+		{
+			yield return null;
+		}
+	}
 }
