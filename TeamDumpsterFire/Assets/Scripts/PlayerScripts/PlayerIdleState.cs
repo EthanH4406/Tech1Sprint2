@@ -118,7 +118,16 @@ public class PlayerIdleState : PlayerBaseState
 			}
 			else
 			{
-				manager.pauseMenu.PauseGame();
+				if(manager.pauseMenu.isPaused)
+				{
+					manager.pauseMenu.BackToGame();
+				}
+				else
+				{
+					manager.pauseMenu.PauseGame();
+				}
+
+				
 			}
 		}
 	}
