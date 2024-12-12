@@ -35,7 +35,7 @@ public class EnemyPatrol : MonoBehaviour
         SetDestination();
         timer = Time.time;
         aiPath.canMove = false;
-        StartCoroutine("HitDelay", 0.01f);
+        StartCoroutine("HitDelay", 0.5f);
     }
 
     // Update is called once per frame
