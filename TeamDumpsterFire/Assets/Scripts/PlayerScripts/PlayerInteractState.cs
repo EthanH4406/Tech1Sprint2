@@ -23,6 +23,8 @@ public class PlayerInteractState : PlayerBaseState
 		{
 			if (foundColliders[i].collider.CompareTag("trashHeap"))
 			{
+				manager.anim.SetBool("looting", true);
+				manager.anim.Play("Looting");
 				TrashFishingBehaviour fishingSpawner = foundColliders[i].collider.gameObject.GetComponent<TrashFishingBehaviour>();
 				fishingSpawner.SpawnItem();
 				break;
