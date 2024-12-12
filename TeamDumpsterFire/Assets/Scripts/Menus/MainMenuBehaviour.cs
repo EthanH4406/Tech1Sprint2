@@ -38,7 +38,7 @@ public class MainMenuBehaviour : MonoBehaviour
     {
 		yield return new WaitForSeconds(1.5f);
 
-		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(1);
 
         while(!asyncLoad.isDone)
         {

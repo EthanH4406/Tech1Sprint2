@@ -25,6 +25,10 @@ public class PlayerBullet : MonoBehaviour
 	{
 		//transform.position += transform.right * Time.deltaTime * speed;
 		v = rb.velocity;
+
+		float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
+		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
 	}
 
 	private void FixedUpdate()
