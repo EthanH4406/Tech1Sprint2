@@ -40,7 +40,7 @@ public class PlayerAmmoCounter : MonoBehaviour
     private int healthStage;
 
 
-    private float bulletDmg;
+    public float bulletDmg;
 
 
 	private float delay = 0.1f;

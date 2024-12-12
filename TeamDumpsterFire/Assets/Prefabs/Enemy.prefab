@@ -315,7 +315,7 @@ MonoBehaviour:
   targetFound: 0
   playerHealth: {fileID: 0}
   hitDelay: 0.5
-  enemyHealth: 5
+  enemyHealth: 35
 --- !u!114 &7628692382687884161
 MonoBehaviour:
   m_ObjectHideFlags: 0

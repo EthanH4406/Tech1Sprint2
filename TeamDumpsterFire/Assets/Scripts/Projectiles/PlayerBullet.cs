@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
@@ -27,7 +28,7 @@ public class PlayerBullet : MonoBehaviour
 		v = rb.velocity;
 
 		float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
-		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+		transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
 
 	}
 
@@ -76,7 +77,7 @@ public class PlayerBullet : MonoBehaviour
 		if (collision.CompareTag("Enemy"))
         {
 			ResetProjectile();
-			collision.GetComponent<EnemyPatrol>().EnemyTakeDamage(1);		
+			collision.GetComponent<EnemyPatrol>().EnemyTakeDamage(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAmmoCounter>().bulletDmg);		
 		}
 	}
 
