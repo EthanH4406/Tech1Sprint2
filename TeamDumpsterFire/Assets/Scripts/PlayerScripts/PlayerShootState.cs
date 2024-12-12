@@ -29,6 +29,7 @@ public class PlayerShootState : PlayerBaseState
 		
 		if(manager.ammoCounter.ammoCount > 0)
 		{
+			manager.anim.SetBool("shooting", true);
 			manager.ammoCounter.ShootBullet();
 		}
 

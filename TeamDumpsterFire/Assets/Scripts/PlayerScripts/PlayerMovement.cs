@@ -181,6 +181,8 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("side", false);
             anim.SetBool("down", false);
             anim.SetBool("up", false);
+            anim.SetBool("looting", false);
+            anim.SetBool("shooting", false);
 		}
 
 		
