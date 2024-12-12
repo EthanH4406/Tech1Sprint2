@@ -17,6 +17,7 @@ TagManager:
   - pickHurt
   - dEntrance
   - bEntrance
+  - Enemy
   layers:
   - Default
   - TransparentFX
