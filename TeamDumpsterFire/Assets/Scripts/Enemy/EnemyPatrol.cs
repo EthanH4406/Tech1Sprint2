@@ -64,6 +64,7 @@ public class EnemyPatrol : MonoBehaviour
         if(Vector2.Distance(posOfWaypoint, enemyPos.position) <= destOffset && Time.time >= timer + timerCooldown && allowPathing && !targetFound && gameManager.waypoints.Length > 0)
         {
             SetDestination();
+            timer = Time.time;
         }
         if (targetFound && targetSetter.target != playerPos)
         {
