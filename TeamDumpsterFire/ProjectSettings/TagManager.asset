@@ -18,6 +18,7 @@ TagManager:
   - dEntrance
   - bEntrance
   - Enemy
+  - transitionPanel
   layers:
   - Default
   - TransparentFX
