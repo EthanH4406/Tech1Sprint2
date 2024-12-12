@@ -11,6 +11,7 @@ public class PlayerStateManager : MonoBehaviour
 	[Header("Fill These")]
 	public PauseMenuBehaviour pauseMenu;
 	public Animator anim;
+	public ParticleSystem repairParticles;
 
 	[Header("Player Controls")]
 	public InputActionReference shoot;
