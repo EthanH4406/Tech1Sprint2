@@ -11,6 +11,7 @@ public class PlayerRepairState : PlayerBaseState
 			Debug.Log("Entered the repair state");
 		}
 
+		manager.repairParticles.Play();
 		manager.ammoCounter.Repair();
 		manager.SwitchState(manager.idleState);
 	}
