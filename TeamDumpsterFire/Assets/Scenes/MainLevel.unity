@@ -5083,7 +5083,7 @@ GameObject:
   - component: {fileID: 944513746}
   - component: {fileID: 944513745}
   - component: {fileID: 944513744}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12040,6 +12040,8 @@ MonoBehaviour:
   - {fileID: 6535319917781031095, guid: 612e154a416a35640ac8e55ac7e35df9, type: 3}
   - {fileID: 1886741999298609634, guid: 95a4945d6425ef645b1c4cc2f473538b, type: 3}
   - {fileID: 2806282349890432515, guid: 32a3f869c4e475c40b2c50b52d95843b, type: 3}
+  - {fileID: 4677286374976111407, guid: 31745aedb2abdf445a7f918737bf3625, type: 3}
+  - {fileID: 9220289420368503656, guid: 3c79df76e116c0c45a34a8b34a2af76c, type: 3}
   showPoints: 0
   printDst: 0
   spawnedObjects: []
