@@ -26,7 +26,16 @@ public class TeleporterBehaviour : MonoBehaviour
 	{
 		if(collision.CompareTag("Player"))
 		{
-			player.transform.position = exit.transform.position;
+			GameObject.FindGameObjectWithTag("transitionPanel").GetComponent<Animator>().SetTrigger("FadeOut");
+			StartCoroutine(TeleportPlayer());
 		}
+	}
+
+	IEnumerator TeleportPlayer()
+	{
+		yield return new WaitForSeconds(1.5f);
+
+		player.transform.position = exit.transform.position;
+		GameObject.FindGameObjectWithTag("transitionPanel").GetComponent<Animator>().SetTrigger("FadeIn");
 	}
 }
