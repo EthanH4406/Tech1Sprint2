@@ -14671,7 +14671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74beb41323ce19a4a887d3b114b3a503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  density: 24
+  density: 40
   antiSpawnRadius: 1
   numberOfSamplesBeforeRejection: 30
   dstFromStartToEnd: 50
