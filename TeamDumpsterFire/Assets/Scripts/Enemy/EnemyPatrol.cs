@@ -24,9 +24,15 @@ public class EnemyPatrol : MonoBehaviour
 
     public PlayerHealthBar playerHealth;
     public float hitDelay;
+    private GameManager gameManager;
 
-    // Start is called before the first frame update
-    void Start()
+	private void Awake()
+	{
+		gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+	}
+
+	// Start is called before the first frame update
+	void Start()
     {
         allowPathing = true;
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
@@ -52,7 +58,7 @@ public class EnemyPatrol : MonoBehaviour
         }
 
         
-        if(Vector2.Distance(posOfWaypoint, enemyPos.position) <= destOffset && Time.time >= timer + timerCooldown && allowPathing && !targetFound)
+        if(Vector2.Distance(posOfWaypoint, enemyPos.position) <= destOffset && Time.time >= timer + timerCooldown && allowPathing && !targetFound && gameManager.waypoints.Length > 0)
         {
             SetDestination();
         }
@@ -64,10 +70,7 @@ public class EnemyPatrol : MonoBehaviour
 
     void SetDestination()
     {
-        if (waypoints == null)
-        {
-            waypoints = GameObject.FindGameObjectsWithTag("Basic Enemy Waypoint");
-        }
+        waypoints = gameManager.waypoints;
 
         destSelected = Random.Range(0, waypoints.Length);
 
