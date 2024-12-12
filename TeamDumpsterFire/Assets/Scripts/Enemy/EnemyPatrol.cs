@@ -16,6 +16,7 @@ public class EnemyPatrol : MonoBehaviour
     int destSelected;
     float timer;
     public float timerCooldown;
+    public Animator anim;
 
     public AIPath aiPath;
     public bool targetFound = false;
@@ -25,6 +26,8 @@ public class EnemyPatrol : MonoBehaviour
     public PlayerHealthBar playerHealth;
     public float hitDelay;
     private GameManager gameManager;
+
+    public int enemyHealth = 3;
 
 	private void Awake()
 	{
@@ -91,9 +94,19 @@ public class EnemyPatrol : MonoBehaviour
     {
         if (GetComponent<BoxCollider2D>().IsTouching(collision) && collision.gameObject.tag == "Player")
         {
+            anim.SetBool("attacking", true);
             playerHealth.TakeDamage();
             aiPath.canMove = false;
             StartCoroutine("HitDelay", hitDelay);
+        }
+    }
+
+    public void EnemyTakeDamage(int dmg)
+    {
+        enemyHealth -= dmg;
+        if (enemyHealth <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -101,5 +114,6 @@ public class EnemyPatrol : MonoBehaviour
     {
         yield return new WaitForSeconds(hitDelay);
         aiPath.canMove = true;
+        anim.SetBool("attacking", false);
     }
 }
