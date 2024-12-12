@@ -10,10 +10,24 @@ public class GameManager : MonoBehaviour
 	private GameObject[] npcs;
 	private GameObject player;
 
+	public GameObject[] waypoints;
+
 	private void Awake()
 	{
 		objPooler = this.gameObject.GetComponent<ObjectPoolerSystem>();
 
+	}
+
+	private void Start()
+	{
+		StartCoroutine(GetWaypoints());
+	}
+
+	IEnumerator GetWaypoints()
+	{
+		yield return new WaitForSeconds(1.0f);
+
+		waypoints = GameObject.FindGameObjectsWithTag("Basic Enemy Waypoint");
 	}
 
 
