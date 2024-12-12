@@ -73,7 +73,11 @@ public class PlayerBullet : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		
+		if (collision.CompareTag("Enemy"))
+        {
+			ResetProjectile();
+			collision.GetComponent<EnemyPatrol>().EnemyTakeDamage(1);		
+		}
 	}
 
 	public void Launch(Vector2 direction, float _speed)
