@@ -4951,6 +4951,90 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &122331833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 122331835}
+  - component: {fileID: 122331834}
+  m_Layer: 0
+  m_Name: Square
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &122331834
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122331833}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 1, g: 0.85420793, b: 0.627451, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &122331835
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122331833}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 100.1, y: 99.9, z: 0}
+  m_LocalScale: {x: 197.60767, y: 199.55388, z: 175.43198}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &904829930
 GameObject:
   m_ObjectHideFlags: 0
@@ -12806,6 +12890,11 @@ MonoBehaviour:
   startPos: {x: 0, y: 0}
   floorTile:
   - {fileID: 11400000, guid: 8ef3255356d577147a5bbed82df3bc0f, type: 2}
+  - {fileID: 11400000, guid: 276a33ce2556dcc4a935cabfd030667c, type: 2}
+  - {fileID: 11400000, guid: 5ae2328f6791e8d48aa0ddaa21be84e3, type: 2}
+  - {fileID: 11400000, guid: 8ef3255356d577147a5bbed82df3bc0f, type: 2}
+  - {fileID: 11400000, guid: 8ef3255356d577147a5bbed82df3bc0f, type: 2}
+  - {fileID: 11400000, guid: 8ef3255356d577147a5bbed82df3bc0f, type: 2}
   wallTop:
   - {fileID: 11400000, guid: 75b33f188f10aa247aaf454500091142, type: 2}
   wallSideRight:
@@ -12821,13 +12910,13 @@ MonoBehaviour:
   wallInnerCornerDownRight:
   - {fileID: 11400000, guid: 88014404573cf9e42977dd0c98a0e989, type: 2}
   wallDiagonalCornerDownRight:
-  - {fileID: 11400000, guid: 0bae4ae2181fbf24db4529ecccc8e528, type: 2}
+  - {fileID: 11400000, guid: 75b33f188f10aa247aaf454500091142, type: 2}
   wallDiagonalCornerDownLeft:
-  - {fileID: 11400000, guid: 0bae4ae2181fbf24db4529ecccc8e528, type: 2}
+  - {fileID: 11400000, guid: 75b33f188f10aa247aaf454500091142, type: 2}
   wallDiagonalCornerUpRight:
-  - {fileID: 11400000, guid: 0bae4ae2181fbf24db4529ecccc8e528, type: 2}
+  - {fileID: 11400000, guid: 75b33f188f10aa247aaf454500091142, type: 2}
   wallDiagonalCornerUpLeft:
-  - {fileID: 11400000, guid: 0bae4ae2181fbf24db4529ecccc8e528, type: 2}
+  - {fileID: 11400000, guid: 75b33f188f10aa247aaf454500091142, type: 2}
   generatedRooms: []
 --- !u!114 &1686194090487887084
 MonoBehaviour:
@@ -21511,3 +21600,4 @@ SceneRoots:
   - {fileID: 8091071518736163319}
   - {fileID: 1318363894}
   - {fileID: 8538249712034314881}
+  - {fileID: 122331835}

@@ -77,17 +77,17 @@ MonoBehaviour:
   wallFull:
   - {fileID: 11400000, guid: 75b33f188f10aa247aaf454500091142, type: 2}
   wallInnerCornerDownLeft:
-  - {fileID: 11400000, guid: 61c0f81021010474bae8aeb20937a580, type: 2}
+  - {fileID: 11400000, guid: 75b33f188f10aa247aaf454500091142, type: 2}
   wallInnerCornerDownRight:
-  - {fileID: 11400000, guid: 88014404573cf9e42977dd0c98a0e989, type: 2}
+  - {fileID: 11400000, guid: 75b33f188f10aa247aaf454500091142, type: 2}
   wallDiagonalCornerDownRight:
-  - {fileID: 11400000, guid: 0bae4ae2181fbf24db4529ecccc8e528, type: 2}
+  - {fileID: 11400000, guid: 75b33f188f10aa247aaf454500091142, type: 2}
   wallDiagonalCornerDownLeft:
-  - {fileID: 11400000, guid: 0bae4ae2181fbf24db4529ecccc8e528, type: 2}
+  - {fileID: 11400000, guid: 75b33f188f10aa247aaf454500091142, type: 2}
   wallDiagonalCornerUpRight:
-  - {fileID: 11400000, guid: 0bae4ae2181fbf24db4529ecccc8e528, type: 2}
+  - {fileID: 11400000, guid: c633e8ce51393f74cb84f41249fc9f37, type: 2}
   wallDiagonalCornerUpLeft:
-  - {fileID: 11400000, guid: 0bae4ae2181fbf24db4529ecccc8e528, type: 2}
+  - {fileID: 11400000, guid: 75b33f188f10aa247aaf454500091142, type: 2}
   generatedRooms: []
 --- !u!114 &5301470060928617582
 MonoBehaviour:
