@@ -96,7 +96,7 @@ public class PlayerHealthBar : MonoBehaviour
 	{
 		yield return new WaitForSeconds(1.5f);
 
-		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(0);      //change this to death scene index
+		AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(2);      //change this to death scene index
 
 		while (!asyncLoad.isDone)
 		{
