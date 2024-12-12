@@ -101,9 +101,9 @@ public class EnemyPatrol : MonoBehaviour
         }
     }
 
-    public void EnemyTakeDamage(int dmg)
+    public void EnemyTakeDamage(float dmg)
     {
-        enemyHealth -= dmg;
+        enemyHealth -= (int)dmg;
         if (enemyHealth <= 0)
         {
             Destroy(gameObject);
